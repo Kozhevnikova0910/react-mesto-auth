@@ -33,9 +33,9 @@ function App() {
     const [loggedIn, setLoggedIn] = React.useState(false);
 
     const [isInfoOpen, setIsInfoOpen] = React.useState(false)
-    const [isTitle, setIsTitle] = React.useState('')
-    const [isAlt, setIsAlt] = React.useState('Ошибка')
-    const [isRes, setIsRes] = React.useState(true)
+    const [label, setLabel] = React.useState('')
+    const [alt, setAlt] = React.useState('Ошибка')
+    const [res, setRes] = React.useState(true)
 
     const [email, setEmail] = React.useState('');
 
@@ -135,15 +135,15 @@ function App() {
     function handleRegistration(data) {
         auth.registration(data)
             .then(res => {
-                setIsRes(true)
-                setIsTitle('Вы успешно зарегистрировались!')
-                setIsAlt('Ошибка')
+                setRes(true)
+                setLabel('Вы успешно зарегистрировались!')
+                setAlt('Ошибка')
                 setIsInfoOpen(true)
             })
             .catch(err => {
-                setIsRes(false)
-                setIsTitle('Что-то пошло не так! Попробуйте ещё раз.')
-                setIsAlt('Успех')
+                setRes(false)
+                setLabel('Что-то пошло не так! Попробуйте ещё раз.')
+                setAlt('Успех')
                 setIsInfoOpen(true)
                 console.log(err)
             })
@@ -154,8 +154,9 @@ function App() {
             .then(res => {
                 if (res.token) {
                     setLoggedIn(true);
-                    localStorage.setItem('token', res.token)
-                    navigate('', {replace: true})
+                    localStorage.setItem('token', res.token);
+                    checkToken();
+                    navigate('/', {replace: true})
                 }
             })
             .catch(err => console.log(err))
@@ -187,7 +188,7 @@ function App() {
             <Routes>
                 <Route path="/" element={
                     <>
-                        <Header label="Войти" link="/sign-in" email={email} onSignOut={signOut}/>
+                        <Header email={email} onSignOut={signOut}/>
                         <ProtectedRoute element={Main}
                                         loggedIn={loggedIn}
                                         onEditProfile={handleEditProfileClick}
@@ -205,9 +206,9 @@ function App() {
                         <Register onSignUpClick={handleRegistration}/>
                         <InfoTooltip
                             isOpen={isInfoOpen}
-                            title={isTitle}
-                            alt={isAlt}
-                            res={isRes}
+                            title={label}
+                            alt={alt}
+                            res={res}
                             onClose={closePopupInfo}
                         />
                     </>

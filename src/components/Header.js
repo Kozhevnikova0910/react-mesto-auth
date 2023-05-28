@@ -14,10 +14,6 @@ function Header({label, link, email, onSignOut}) {
                     <a className="header__label" href={link}>{label}</a>
             }
         </header>
-
-        // <header className="header">
-        //     <img src={logo} alt="лого" className="header__logo"/>
-        // </header>
     )
 }
 
