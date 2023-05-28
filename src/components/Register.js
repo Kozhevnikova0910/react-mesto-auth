@@ -18,8 +18,6 @@ function Register({onSignUpClick}) {
             password: pass,
             email: email
         });
-        setPass('');
-        setEmail('');
     }
 
     return (

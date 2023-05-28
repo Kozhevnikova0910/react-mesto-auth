@@ -18,8 +18,6 @@ function Login({onSignInClick}) {
             password: pass,
             email: email,
         });
-        setPass('');
-        setEmail('');
     }
 
     return (
