@@ -4,6 +4,10 @@
 @import "./blocks/page/page.css";
 @import "./blocks/header/header.css";
 @import "./blocks/header/__logo/header__logo.css";
+@import "./blocks/header/__email/header__email.css";
+@import "./blocks/header/__label/header__label.css";
+@import "./blocks/header/__info/header__info.css";
+@import "./blocks/header/__close/header__close.css";
 @import "./blocks/profile/profile.css";
 @import "./blocks/profile/__add-btn/profile__add-btn.css";
 @import "./blocks/profile/__avatar/profile__avatar.css";
@@ -42,6 +46,17 @@
 @import "./blocks/popup/__input-error/_active/popup__input-error_active.css";
 @import "./blocks/popup/__field/popup__field.css";
 @import "./blocks/popup/__submit-btn/_inactive/popup__submit-btn_inactive.css";
+@import "./blocks/popup/__subtitle/popup__subtitle.css";
+@import "./blocks/popup/__img/popup__img.css";
 @import "./blocks/picture/picture.css";
 @import "./blocks/picture/__image/picture__image.css";
 @import "./blocks/picture/__title/picture__title.css";
+
+@import "./blocks/sign/__container/sign__container.css";
+@import "./blocks/sign/__title/sign__title.css";
+@import "./blocks/sign/__subtitle/sign__subtitle.css";
+@import "./blocks/sign/__form/sign__form.css";
+@import "./blocks/sign/__input/sign__input.css";
+@import "./blocks/sign/__save/sign__save.css";
+@import "./blocks/sign/__field/sign__field.css";
+@import "./blocks/sign/__link/sign__link.css";
