@@ -1,4 +1,4 @@
-const baseUrl = 'http://kozhevnikova.students.nomoredomains.xyz';
+const baseUrl = 'https://api.kozhevnikova.students.nomoredomains.xyz';
 
 function _checkResponse(res) {
     return res.ok
@@ -21,7 +21,7 @@ const authorization = (data) => {
     return fetch(`${baseUrl}/signin`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
     })

@@ -2,7 +2,7 @@ import React from 'react';
 import {Routes, Route, useNavigate, Navigate} from 'react-router-dom';
 import api from '../utils/Api.js';
 import * as auth from '../utils/Auth';
-import {CurrentUserContext, userObject} from '../contexts/CurrentUserContext.js'
+import {CurrentUserContext} from '../contexts/CurrentUserContext.js'
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -29,7 +29,7 @@ function App() {
         name: '',
         link: ''
     });
-    const [currentUser, setCurrentUser] = React.useState(userObject);
+    const [currentUser, setCurrentUser] = React.useState({});
 
     const [cards, setCards] = React.useState([])
 
@@ -161,7 +161,8 @@ function App() {
                     setLoggedIn(true);
                     localStorage.setItem('token', res.token);
                     checkToken();
-                    navigate('/', {replace: true})
+                    navigate('/', {replace: true});
+
                 }
             })
             .catch(err => console.log(err))
