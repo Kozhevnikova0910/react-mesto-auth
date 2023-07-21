@@ -40,22 +40,10 @@ function App() {
     const [infoTooltipAltImg, setInfoTooltipAltImg] = React.useState('Ошибка')
     const [isRegistrationSuccess, setIsRegistrationSuccess] = React.useState(true)
 
-    const [email, setEmail] = React.useState('');
-
     const navigate = useNavigate();
 
     React.useEffect(() => {
         checkToken();
-
-        api.getUserInfo()
-            .then(res => {
-                setCurrentUser(res)
-                checkToken();
-            })
-            .catch(err => console.log(err))
-    }, [])
-
-    React.useEffect(() => {
         if (loggedIn) {
             api.getInitialCards()
                 .then(cardsData => {
@@ -186,7 +174,13 @@ function App() {
                 .then(res => {
                     if (res) {
                         setLoggedIn(true);
-                        setEmail(res.data.email);
+                        setCurrentUser({
+                            _id: res.id,
+                            name: res.name,
+                            about: res.about,
+                            avatar: res.avatar,
+                            email: res.email,
+                        })
                         navigate('/', {replace: true});
                     }
                 })
@@ -205,7 +199,7 @@ function App() {
             <Routes>
                 <Route path="/" element={
                     <>
-                        <Header email={email} onSignOut={signOut}/>
+                        <Header email={currentUser.email} onSignOut={signOut}/>
                         <ProtectedRoute element={Main}
                                         loggedIn={loggedIn}
                                         onEditProfile={handleEditProfileClick}
@@ -217,9 +211,9 @@ function App() {
                                         onCardDelete={handleCardDelete}/>
                     </>
                 }/>
-                <Route path="/sign-up" element={
+                <Route path="/signup" element={
                     <>
-                        <Header label="Войти" link="/sign-in"/>
+                        <Header label="Войти" link="/signin"/>
                         <Register onSignUpClick={handleRegistration}/>
                         <InfoTooltip
                             isOpen={isInfoTooltipOpen}
@@ -230,13 +224,13 @@ function App() {
                         />
                     </>
                 }/>
-                <Route path="/sign-in" element={
+                <Route path="/signin" element={
                     <>
-                        <Header label="Регистрация" link="/sign-up"/>
+                        <Header label="Регистрация" link="/signup"/>
                         <Login onSignInClick={handleAuthorization}/>
                     </>
                 }/>
-                <Route path='*' element={<Navigate to='/sign-in' replace/>}/>
+                <Route path='*' element={<Navigate to='/signin' replace/>}/>
             </Routes>
             {loggedIn && <Footer/>}
             <EditProfilePopup onUpdateUser={handleUpdateUser}

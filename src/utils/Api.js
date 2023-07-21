@@ -86,9 +86,9 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
+    baseUrl: 'http://kozhevnikova.students.nomoredomains.xyz',
     headers: {
-        authorization: 'de4d1a5e-b347-4878-b328-8f0194692392',
+        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
     }
 })

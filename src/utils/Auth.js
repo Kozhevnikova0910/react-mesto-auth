@@ -1,4 +1,4 @@
-const baseUrl = 'https://auth.nomoreparties.co';
+const baseUrl = 'http://kozhevnikova.students.nomoredomains.xyz';
 
 function _checkResponse(res) {
     return res.ok
